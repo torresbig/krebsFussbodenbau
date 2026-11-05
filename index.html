@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Krebs Fussbodenbau — Meisterbetrieb Rheinböllen</title>
+  <meta name="description" content="Krebs Fussbodenbau GmbH — Bodenbeläge, Estricharbeiten, Bautrocknung und Verleih in Rheinböllen und Umgebung.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,900;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0806;
+      --fg: #f5f1e8;
+      --accent: #8b5a2b;
+      --accent-hover: #c9a06b;
+      --muted: #9a9084;
+      --card: rgba(26, 22, 16, 0.7);
+      --card-border: rgba(139, 90, 43, 0.25);
+      --shadow: 0 32px 64px -12px rgba(0,0,0,0.6);
+      --radius: 20px;
+      --transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      --glass: rgba(255, 255, 255, 0.03);
+      --nav-bg: rgba(10, 8, 6, 0.94);
+      --nav-border: rgba(139, 90, 43, 0.15);
+      --hero-overlay: linear-gradient(180deg, rgba(10, 8, 6, 0.2) 0%, rgba(10, 8, 6, 0.5) 50%, rgba(10, 8, 6, 0.85) 100%);
+    }
+    :root[data-theme="light"] {
+      --bg: #f7f4ed;
+      --fg: #26221d;
+      --accent: #79502c;
+      --accent-hover: #9a6939;
+      --muted: #62594f;
+      --card: rgba(255, 255, 255, 0.82);
+      --card-border: rgba(121, 80, 44, 0.22);
+      --shadow: 0 32px 64px -12px rgba(58, 42, 25, 0.18);
+      --glass: rgba(38, 34, 29, 0.04);
+      --nav-bg: rgba(247, 244, 237, 0.97);
+      --nav-border: rgba(121, 80, 44, 0.2);
+      --hero-overlay: linear-gradient(180deg, rgba(247, 244, 237, 0.45) 0%, rgba(247, 244, 237, 0.68) 55%, rgba(247, 244, 237, 0.94) 100%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; line-height: 1.05; margin: 0 0 1rem; }
+    h1 { font-size: clamp(3.5rem, 8vw, 7rem); letter-spacing: -0.03em; }
+    h2 { font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: -0.02em; }
+    h3 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+    h4 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+    p { margin: 0 0 1rem; color: var(--fg); opacity: 0.85; }
+    a { color: var(--accent); text-decoration: none; transition: var(--transition); }
+    a:hover { color: var(--accent-hover); }
+    .skip-link {
+      position: absolute; top: -100%; left: 0; background: var(--accent); color: white;
+      padding: 0.5rem 1rem; z-index: 1000; transition: top 0.3s;
+    }
+    .skip-link:focus { top: 0; }
+    .eyebrow { color: var(--accent-hover); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+    section { padding: clamp(5rem, 12vw, 10rem) 1.5rem; position: relative; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .section-header { text-align: center; max-width: 800px; margin: 0 auto 6rem; }
+    .section-title { margin-bottom: 1.5rem; }
+    .section-subtitle { font-size: 1.3rem; color: var(--muted); max-width: 650px; margin: 0 auto; line-height: 1.8; }
+    #referenzen .section-header { margin-bottom: 3rem; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: var(--transition); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-14px); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    @media (max-width: 768px) { section { padding: 4rem 1rem; } h1 { font-size: 2.8rem; } .section-subtitle { font-size: 1.1rem; } }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.5rem 2rem;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--nav-border);
+    }
+    .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .brand-mark { display: flex; align-items: center; gap: 0.55rem; color: var(--fg); text-decoration: none; flex-shrink: 0; }
+    .brand-mark__text { display: flex; flex-direction: column; line-height: 1; }
+    .brand-mark__name { font-size: 1.85rem; font-weight: 500; letter-spacing: 0.16em; }
+    .brand-mark__subtitle { margin-top: 0.35rem; color: var(--fg); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; white-space: nowrap; }
+    .brand-mark__crab { width: 58px; height: 54px; object-fit: contain; }
+    .nav-brand { font-family: 'DM Sans', sans-serif; }
+    .nav-brand .brand-mark__name { font-size: 1.65rem; }
+    .nav-brand .brand-mark__subtitle { font-size: 0.76rem; }
+    .nav-links { display: flex; list-style: none; gap: 3rem; margin: 0; padding: 0; }
+    .nav-links a { color: var(--fg); font-weight: 500; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.8; }
+    .nav-links a:hover { opacity: 1; color: var(--accent-hover); }
+    .theme-toggle { background: var(--glass); border: 1px solid var(--card-border); color: var(--fg); padding: 0.5rem 1rem; border-radius: 50px; cursor: pointer; font-size: 0.85rem; transition: var(--transition); backdrop-filter: blur(10px); }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent-hover); background: rgba(139, 90, 43, 0.15); }
+    .hero { position: relative; height: 100vh; min-height: 800px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 58%; z-index: 1; }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--hero-overlay); z-index: 2; }
+    .hero-content { position: relative; z-index: 3; text-align: center; padding: 0 1.5rem; max-width: 900px; margin: 0 auto; animation: fadeUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) both; }
+    .hero-kicker { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.4em; color: var(--accent-hover); font-weight: 700; margin-bottom: 1.5rem; display: block; }
+    .hero-subtitle { font-size: clamp(1.25rem, 2.5vw, 1.6rem); color: var(--fg); max-width: 650px; margin: 0 auto 3rem; opacity: 0.9; line-height: 1.9; }
+    .hero-actions { display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { display: inline-block; padding: 1.25rem 2.75rem; background: var(--accent); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1.1rem; transition: var(--transition); border: none; cursor: pointer; }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-4px); box-shadow: 0 20px 40px -10px rgba(139, 90, 43, 0.5); }
+    .btn-secondary { display: inline-block; padding: 1.25rem 2.75rem; background: transparent; color: var(--fg); text-decoration: none; border: 1px solid var(--card-border); border-radius: 6px; font-weight: 600; font-size: 1.1rem; transition: var(--transition); backdrop-filter: blur(10px); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent-hover); transform: translateY(-4px); background: rgba(139, 90, 43, 0.1); }
+    .scroll-indicator { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 3; animation: bounce 3s infinite; }
+    .scroll-indicator span { display: block; width: 24px; height: 24px; border-bottom: 2px solid var(--fg); border-right: 2px solid var(--fg); transform: rotate(45deg); margin: -12px; }
+    .project-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .project-card { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; padding: 0; border: 0; border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow); cursor: zoom-in; text-align: left; }
+    .project-card::after { position: absolute; inset: 30% 0 0; background: linear-gradient(transparent, rgba(10, 8, 6, 0.72)); content: ""; opacity: 0.72; transition: opacity 0.3s ease; }
+    .project-card__image { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .project-card:hover .project-card__image, .project-card:focus-visible .project-card__image { transform: scale(1.045); }
+    .project-card:hover::after, .project-card:focus-visible::after { opacity: 1; }
+    .project-card__label { position: absolute; z-index: 1; right: 1.25rem; bottom: 1rem; left: 1.25rem; color: #fff; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; }
+    .project-gallery-controls { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; }
+    .project-gallery-status { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+    .project-gallery-navigation { display: flex; gap: 0.65rem; }
+    .project-gallery-button { display: inline-flex; min-width: 2.75rem; min-height: 2.75rem; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem 0.9rem; border: 1px solid var(--card-border); border-radius: 999px; background: var(--glass); color: var(--fg); font: inherit; cursor: pointer; touch-action: manipulation; transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .project-gallery-button:hover:not(:disabled) { border-color: var(--accent); background: rgba(139, 90, 43, 0.15); color: var(--accent-hover); }
+    .project-gallery-button:disabled { cursor: not-allowed; opacity: 0.45; }
+    .about-layout, .einzugsgebiet-layout, .kontakt-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 5rem; }
+    .project-dialog { width: fit-content; max-width: 96vw; max-height: 94vh; padding: 0; overflow: visible; border: 1px solid rgba(255,255,255,0.2); border-radius: 16px; background: #111; color: #fff; box-shadow: 0 24px 80px rgba(0,0,0,0.5); }
+    .project-dialog::backdrop { background: rgba(5, 5, 5, 0.86); backdrop-filter: blur(6px); }
+    .project-viewer { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.75rem; padding: 3.5rem 1rem 1rem; }
+    .project-viewer__image { grid-column: 1 / -1; width: min(88vw, 1200px); height: min(72vh, 820px); object-fit: contain; }
+    .project-dialog__button { display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid rgba(255,255,255,0.25); border-radius: 50%; background: rgba(20,20,20,0.75); color: #fff; font: inherit; font-size: 1.5rem; cursor: pointer; transition: background 0.2s ease; }
+    .project-dialog__button:hover { background: rgba(255,255,255,0.2); }
+    .project-dialog__close { position: absolute; z-index: 1; top: 0.75rem; right: 0.75rem; }
+    .project-dialog__previous { position: absolute; z-index: 1; top: 50%; left: 1.5rem; transform: translateY(-50%); }
+    .project-dialog__next { position: absolute; z-index: 1; top: 50%; right: 1.5rem; transform: translateY(-50%); }
+    .project-viewer__caption { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 1rem; color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+    @media (max-width: 768px) {
+      .about-layout, .einzugsgebiet-layout, .kontakt-layout { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+      .einzugsgebiet-layout { gap: 1.5rem; }
+      .einzugsgebiet-content { display: contents; }
+      .einzugsgebiet-content h3 { order: -1; }
+      .einzugsgebiet-map { order: 0; }
+      .einzugsgebiet-content p { order: 1; }
+      .einzugsgebiet-content ul { display: none; }
+      .project-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+      .project-card__label { right: 0.75rem; bottom: 0.65rem; left: 0.75rem; font-size: 0.78rem; }
+      .project-gallery-controls { align-items: flex-start; }
+      .project-gallery-button__text { display: none; }
+      .project-viewer { padding: 3.5rem 0.5rem 0.75rem; }
+      .project-viewer__image { width: 94vw; height: min(70vh, 720px); }
+      .project-dialog__previous { left: 0.75rem; }
+      .project-dialog__next { right: 0.75rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .project-card__image, .project-card::after, .project-dialog__button { transition: none; }
+    }
+    @media (max-width: 768px) { .nav-links { display: none; } .hero-actions { flex-direction: column; } .btn-primary, .btn-secondary { width: 100%; text-align: center; } }
+    @media (max-width: 480px) {
+      nav { padding: 1rem; }
+      .brand-mark { gap: 0.45rem; }
+      .nav-brand .brand-mark__name { font-size: 1.5rem; }
+      .nav-brand .brand-mark__subtitle { font-size: 0.72rem; letter-spacing: 0.03em; }
+      .nav-brand .brand-mark__crab { width: 48px; height: 46px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#kontakt" class="skip-link">Zum Kontaktformular springen</a>
+
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="nav-brand brand-mark" aria-label="Krebs Fussbodenbau Home">
+        <span class="brand-mark__text" aria-hidden="true">
+          <span class="brand-mark__name">KREBS</span>
+          <span class="brand-mark__subtitle">FUSSBODENBAU GmbH</span>
+        </span>
+        <img class="brand-mark__crab" src="img/logo/krebs_gruen.png" alt="">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#ueber-uns">Über uns</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#referenzen">Referenzen</a></li>
+        <li><a href="#einzugsgebiet">Einzugsgebiet</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Hellmodus aktivieren">☀️</button>
+    </div>
+  </nav>
+
+  <header class="hero" id="hero">
+    <img class="hero-image" src="img/new/optimized/IMG_3891.jpg" alt="" fetchpriority="high">
+    <div class="hero-overlay"></div>
+    <div class="hero-content reveal reveal-delay-1">
+      <span class="hero-kicker">Meisterbetrieb seit 1995</span>
+      <h1>Böden, die bleiben.</h1>
+      <p class="hero-subtitle">Handverlegte Bodenbeläge, präzise Estricharbeiten und professionelle Bautrocknung in Rheinböllen und der gesamten Region.</p>
+      <div class="hero-actions">
+        <a href="#leistungen" class="btn-primary">Leistungen entdecken</a>
+        <a href="#kontakt" class="btn-secondary">Kontakt aufnehmen</a>
+      </div>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true"><span></span></div>
+  </header>
+  </header>
+
+  <section id="ueber-uns">
+    <div class="container">
+      <div class="section-header reveal reveal-delay-1">
+        <span class="eyebrow">Über uns</span>
+        <h2 class="section-title">Handwerk mit Tradition.</h2>
+        <p class="section-subtitle">Seit über 25 Jahren stehen wir für Qualität, Zuverlässigkeit und erstklassige Beratung rund um Ihren Boden.</p>
+      </div>
+      <div class="about-layout" style="align-items: center;">
+        <div class="about-image reveal reveal-delay-2" style="position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 4/3;">
+          <img src="img/fussbodenbau-bodenbelag-estrich.jpg" alt="Bodenverlegung in Arbeit" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: var(--transition);">
+        </div>
+        <div class="about-content reveal reveal-delay-3">
+          <h3>Ihr Partner für erstklassige Böden</h3>
+          <p>Die Krebs Fussbodenbau GmbH ist Ihr erfahrener Meisterbetrieb in Rheinböllen. Wir verbinden traditionelles Handwerk mit modernen Techniken, um Böden zu schaffen, die nicht nur schön aussehen, sondern auch halten, was sie versprechen.</p>
+          <p>Von der ersten Beratung über die Materialauswahl bis zur fachgerechten Verlegung — wir begleiten Sie bei jedem Schritt.</p>
+          <div style="display: flex; gap: 3rem; margin-top: 3rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+              <span style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--accent-hover);">25+</span>
+              <span style="font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Jahre Erfahrung</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+              <span style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--accent-hover);">500+</span>
+              <span style="font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Projekte</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+              <span style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--accent-hover);">4</span>
+              <span style="font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Leistungen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="leistungen" style="background: var(--card);">
+    <div class="container">
+      <div class="section-header reveal reveal-delay-1">
+        <span class="eyebrow">Leistungen</span>
+        <h2 class="section-title">Alles aus einer Hand.</h2>
+        <p class="section-subtitle">Wir bieten Ihnen ein umfassendes Leistungsspektrum rund um Bodenbeläge, Estrich, Bautrocknung und Geräteverleih.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
+        <div class="leistung-card reveal reveal-delay-2" style="background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 3rem 2rem; transition: var(--transition); position: relative; overflow: hidden; backdrop-filter: blur(10px);">
+          <span style="font-size: 3rem; margin-bottom: 2rem; display: inline-block;">🪵</span>
+          <h4 style="color: var(--fg);">Bodenbeläge</h4>
+          <p style="color: var(--muted); font-size: 1rem; line-height: 1.8;">Professionelle Verlegung von Parkett, Laminat, Vinyl und Designböden. Wir beraten Sie bei der Auswahl und sorgen für eine fachgerechte Umsetzung.</p>
+        </div>
+        <div class="leistung-card reveal reveal-delay-3" style="background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 3rem 2rem; transition: var(--transition); position: relative; overflow: hidden; backdrop-filter: blur(10px);">
+          <span style="font-size: 3rem; margin-bottom: 2rem; display: inline-block;">🏗️</span>
+          <h4 style="color: var(--fg);">Estricharbeiten</h4>
+          <p style="color: var(--muted); font-size: 1rem; line-height: 1.8;">Von der Planung bis zur Ausführung: Wir verlegen Estrich für Neubau und Sanierung. Präzise, eben und bereit für jeden weiteren Bodenbelag.</p>
+        </div>
+        <div class="leistung-card reveal reveal-delay-1" style="background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 3rem 2rem; transition: var(--transition); position: relative; overflow: hidden; backdrop-filter: blur(10px);">
+          <span style="font-size: 3rem; margin-bottom: 2rem; display: inline-block;">💨</span>
+          <h4 style="color: var(--fg);">Bautrocknung</h4>
+          <p style="color: var(--muted); font-size: 1rem; line-height: 1.8;">Effektive Bautrocknung nach Wasserschäden oder beim Neubau. Moderne Trocknungsgeräte sorgen für schnelle und nachhaltige Ergebnisse.</p>
+        </div>
+        <div class="leistung-card reveal reveal-delay-2" style="background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 3rem 2rem; transition: var(--transition); position: relative; overflow: hidden; backdrop-filter: blur(10px);">
+          <span style="font-size: 3rem; margin-bottom: 2rem; display: inline-block;">🔧</span>
+          <h4 style="color: var(--fg);">Verleih</h4>
+          <p style="color: var(--muted); font-size: 1rem; line-height: 1.8;">Professionelle Geräte für Ihre eigenen Projekte. Von Schleifmaschinen bis zu Trocknungsgeräten — wir verleihen hochwertiges Equipment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="referenzen">
+    <div class="container">
+      <div class="section-header reveal reveal-delay-1">
+        <span class="eyebrow">Referenzen</span>
+        <h2 class="section-title">Bodenprojekte mit Blick fürs Detail.</h2>
+        <p class="section-subtitle">Einblicke in unsere Arbeit – von Fischgrätparkett und Holzböden bis zu strapazierfähigen Objektbelägen.</p>
+      </div>
+      <div class="project-gallery" id="project-gallery" role="group" aria-label="Projektgalerie" aria-live="polite"></div>
+      <div class="project-gallery-controls">
+        <span class="project-gallery-status" id="project-gallery-status" aria-live="polite"></span>
+        <div class="project-gallery-navigation" aria-label="Galerie-Navigation">
+          <button class="project-gallery-button" id="project-previous-page" type="button" aria-label="Vorherige Projekte" disabled>← <span class="project-gallery-button__text">Zurück</span></button>
+          <button class="project-gallery-button" id="project-next-page" type="button" aria-label="Weitere Projekte"> <span class="project-gallery-button__text">Mehr Projekte</span> →</button>
+        </div>
+      </div>
+      <noscript><p>Bitte aktivieren Sie JavaScript, um die Projektgalerie zu sehen.</p></noscript>
+    </div>
+  </section>
+
+  <dialog class="project-dialog" id="project-dialog" aria-label="Projektfoto">
+    <div class="project-viewer">
+      <button class="project-dialog__button project-dialog__close" type="button" aria-label="Ansicht schließen">×</button>
+      <button class="project-dialog__button project-dialog__previous" type="button" aria-label="Vorheriges Projektfoto">‹</button>
+      <img class="project-viewer__image" id="project-viewer-image" alt="">
+      <button class="project-dialog__button project-dialog__next" type="button" aria-label="Nächstes Projektfoto">›</button>
+      <div class="project-viewer__caption">
+        <span id="project-caption"></span>
+        <span id="project-count" aria-live="polite"></span>
+      </div>
+    </div>
+  </dialog>
+
+  <section id="einzugsgebiet" style="background: var(--card);">
+    <div class="container">
+      <div class="section-header reveal reveal-delay-1">
+        <span class="eyebrow">Einzugsgebiet</span>
+        <h2 class="section-title">Wir sind für Sie da.</h2>
+        <p class="section-subtitle">Unser Servicegebiet erstreckt sich über Rheinböllen und die umliegenden Gemeinden.</p>
+      </div>
+      <div class="einzugsgebiet-layout" style="align-items: center;">
+        
+        <div class="einzugsgebiet-map reveal reveal-delay-2" style="border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);">
+          <img src="img/gebiet/einzugsgebiet.png" alt="Karte des Einzugsgebiets" style="width: 100%; height: auto; display: block;">
+        </div>
+        <div class="einzugsgebiet-content reveal reveal-delay-3">
+          <h3>Unser Einsatzgebiet</h3>
+          <p>Als lokaler Meisterbetrieb sind wir flexibel und schnell bei Ihnen vor Ort. Unser Einzugsgebiet umfasst Rheinland-Pfalz und die umliegenden Gemeinden.</p>
+          <ul class="service-area-list" style="list-style: none; padding: 0; margin: 0;">
+            <li style="padding: 1rem 0; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 600; color: var(--fg);">Koblenz •</span><span style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></span></li>
+            <li style="padding: 1rem 0; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 600; color: var(--fg);">Frankfurt •</span><span style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></span></li>
+            <li style="padding: 1rem 0; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 600; color: var(--fg);">Trier •</span><span style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></span></li>
+            <li style="padding: 1rem 0; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 600; color: var(--fg);">Kaiserslautern •</span><span style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></span></li>
+            <li style="padding: 1rem 0; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 600; color: var(--fg);">Köln •</span><span style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></span></li>
+            <li style="padding: 1rem 0; border-bottom: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 600; color: var(--fg);">Mainz •</span><span style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></span></li>
+            <li style="padding: 1rem 0; display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 600; color: var(--fg);">Rheinböllen und Umgebung</span><span style="width: 10px; height: 10px; background: var(--accent); border-radius: 50%;"></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="container">
+      <div class="section-header reveal reveal-delay-1">
+        <span class="eyebrow">Kontakt</span>
+        <h2 class="section-title">Lassen Sie uns sprechen.</h2>
+        <p class="section-subtitle">Haben Sie Fragen zu unseren Leistungen oder möchten Sie ein unverbindliches Angebot? Wir freuen uns auf Ihre Nachricht.</p>
+      </div>
+      <div class="kontakt-layout" style="align-items: start;">
+        <div class="kontakt-info reveal reveal-delay-2">
+          <h3>Kontaktieren Sie uns</h3>
+          <div style="display: flex; gap: 1.25rem; margin-bottom: 2rem; align-items: flex-start;">
+            <div style="width: 56px; height: 56px; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; color: var(--accent-hover);">📍</div>
+            <div>
+              <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem; color: var(--fg);">Adresse</h4>
+              <p style="color: var(--muted); font-size: 1rem; margin: 0;">Am Fischlerbach 29<br>55494 Rheinböllen</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1.25rem; margin-bottom: 2rem; align-items: flex-start;">
+            <div style="width: 56px; height: 56px; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; color: var(--accent-hover);">📞</div>
+            <div>
+              <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem; color: var(--fg);">Telefon</h4>
+              <p style="color: var(--muted); font-size: 1rem; margin: 0;"><a href="tel:067643646" style="color: var(--accent-hover);">06764 - 3646</a></p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 1.25rem; margin-bottom: 2rem; align-items: flex-start;">
+            <div style="width: 56px; height: 56px; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; color: var(--accent-hover);">✉️</div>
+            <div>
+              <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem; color: var(--fg);">E-Mail</h4>
+              <p style="color: var(--muted); font-size: 1rem; margin: 0;"><a href="mailto:info@krebs-fussbodenbau.de" style="color: var(--accent-hover);">info@krebs-fussbodenbau.de</a></p>
+            </div>
+          </div>
+          <a href="https://maps.google.de/maps?q=Am+Fischlerbach+29,+55494+Rheinböllen" target="_blank" class="btn-primary" style="margin-top: 1rem; display: inline-block;">Route planen</a>
+        </div>
+        <div class="kontakt-form reveal reveal-delay-3" style="background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 3rem 2.5rem; box-shadow: var(--shadow); backdrop-filter: blur(10px);">
+          <form id="contact-form">
+            <div style="margin-bottom: 2rem;">
+              <label for="name" style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: var(--fg); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Ihr Name</label>
+              <input type="text" id="name" name="name" placeholder="Max Mustermann" required style="width: 100%; padding: 1rem 1.25rem; background: var(--glass); border: 1px solid var(--card-border); border-radius: 12px; color: var(--fg); font-family: inherit; font-size: 1rem;">
+            </div>
+            <div style="margin-bottom: 2rem;">
+              <label for="email" style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: var(--fg); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">E-Mail-Adresse</label>
+              <input type="email" id="email" name="email" placeholder="max@example.de" required style="width: 100%; padding: 1rem 1.25rem; background: var(--glass); border: 1px solid var(--card-border); border-radius: 12px; color: var(--fg); font-family: inherit; font-size: 1rem;">
+            </div>
+            <div style="margin-bottom: 2rem;">
+              <label for="telefon" style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: var(--fg); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Telefonnummer</label>
+              <input type="tel" id="telefon" name="telefon" placeholder="06764 - 3646" style="width: 100%; padding: 1rem 1.25rem; background: var(--glass); border: 1px solid var(--card-border); border-radius: 12px; color: var(--fg); font-family: inherit; font-size: 1rem;">
+            </div>
+            <div style="margin-bottom: 2rem;">
+              <label for="nachricht" style="display: block; margin-bottom: 0.75rem; font-weight: 600; color: var(--fg); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Ihre Nachricht</label>
+              <textarea id="nachricht" name="nachricht" placeholder="Wie können wir Ihnen helfen?" required style="width: 100%; padding: 1rem 1.25rem; background: var(--glass); border: 1px solid var(--card-border); border-radius: 12px; color: var(--fg); font-family: inherit; font-size: 1rem; min-height: 180px; resize: vertical;"></textarea>
+            </div>
+            <button type="submit" class="btn-submit" style="width: 100%; padding: 1.25rem 2rem; background: var(--accent); color: white; border: none; border-radius: 12px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: var(--transition);">Nachricht senden</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: var(--card); border-top: 1px solid var(--card-border); padding: 4rem 1.5rem 2rem; backdrop-filter: blur(10px);">
+    <div class="container">
+      <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;">
+        <div class="footer-brand reveal reveal-delay-1">
+          <div class="brand-mark" style="margin-bottom: 1.5rem;" role="img" aria-label="Krebs Fussbodenbau GmbH">
+            <span class="brand-mark__text" aria-hidden="true">
+              <span class="brand-mark__name">KREBS</span>
+              <span class="brand-mark__subtitle">FUSSBODENBAU GmbH</span>
+            </span>
+            <img class="brand-mark__crab" src="img/logo/krebs_gruen.png" alt="">
+          </div>
+          <p style="margin-top: 1rem; color: var(--muted); font-size: 1rem;">Ihr Meisterbetrieb für Bodenbeläge und Estricharbeiten in Rheinböllen.</p>
+          <div style="margin-top: 2rem; text-align: center;">
+            <button class="theme-toggle" id="theme-toggle-footer" aria-label="Hellmodus aktivieren">☀️ Hellmodus</button>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem;">
+          <div class="footer-section reveal reveal-delay-2">
+            <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg); margin-bottom: 1.5rem;">Leistungen</h4>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="margin-bottom: 1rem;"><a href="#leistungen" style="color: var(--muted); font-size: 1rem; opacity: 0.8;">Bodenbeläge</a></li>
+              <li style="margin-bottom: 1rem;"><a href="#leistungen" style="color: var(--muted); font-size: 1rem; opacity: 0.8;">Estricharbeiten</a></li>
+              <li style="margin-bottom: 1rem;"><a href="#leistungen" style="color: var(--muted); font-size: 1rem; opacity: 0.8;">Bautrocknung</a></li>
+              <li style="margin-bottom: 1rem;"><a href="#leistungen" style="color: var(--muted); font-size: 1rem; opacity: 0.8;">Verleih</a></li>
+            </ul>
+          </div>
+          <div class="footer-section reveal reveal-delay-3">
+            <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg); margin-bottom: 1.5rem;">Unternehmen</h4>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="margin-bottom: 1rem;"><a href="#ueber-uns" style="color: var(--muted); font-size: 1rem; opacity: 0.8;">Über uns</a></li>
+              <li style="margin-bottom: 1rem;"><a href="#referenzen" style="color: var(--muted); font-size: 1rem; opacity: 0.8;">Referenzen</a></li>
+              <li style="margin-bottom: 1rem;"><a href="#einzugsgebiet" style="color: var(--muted); font-size: 1rem; opacity: 0.8;">Einzugsgebiet</a></li>
+              <li style="margin-bottom: 1rem;"><a href="#kontakt" style="color: var(--muted); font-size: 1rem; opacity: 0.8;">Kontakt</a></li>
+            </ul>
+          </div>
+          <div class="footer-section reveal reveal-delay-1">
+            <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg); margin-bottom: 1.5rem;">Rechtliches</h4>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="margin-bottom: 1rem;"><a href="#impressum" style="color: var(--muted); font-size: 1rem; opacity: 0.8;">Impressum</a></li>
+              <li style="margin-bottom: 1rem;"><a href="#datenschutz" style="color: var(--muted); font-size: 1rem; opacity: 0.8;">Datenschutz</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div style="border-top: 1px solid var(--card-border); margin-top: 4rem; padding-top: 2rem; text-align: center; color: var(--muted); font-size: 0.9rem;">
+        <p>&copy; 2026 Krebs Fussbodenbau GmbH · <a href="#impressum" style="color: var(--accent-hover);">Impressum</a> · <a href="#datenschutz" style="color: var(--accent-hover);">Datenschutz</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <section id="impressum" style="padding: 5rem 1.5rem; background: var(--bg);">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      <h2>Impressum</h2>
+      <p><strong>Krebs Fussbodenbau GmbH</strong><br>Am Fischlerbach 29<br>55494 Rheinböllen<br>Telefon: 06764 - 3646<br>E-Mail: info@krebs-fussbodenbau.de</p>
+      <p>Vertretungsberechtigter Geschäftsführer: [Name]</p>
+      <p>Umsatzsteuer-ID: [DE xxx]</p>
+      <p><em>Hinweis: Die rechtlichen Texte (Impressum, Datenschutz) müssen von Ihnen vervollständigt und an Ihre aktuelle Situation angepasst werden.</em></p>
+      <a href="#kontakt" class="btn-primary" style="margin-top: 3rem; display: inline-block;">Zurück zum Kontakt</a>
+    </div>
+  </section>
+
+  <section id="datenschutz" style="padding: 5rem 1.5rem; background: var(--bg);">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      <h2>Datenschutz</h2>
+      <p><strong>Datenschutzerklärung</strong></p>
+      <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+      <p><strong>Krebs Fussbodenbau GmbH</strong><br>Am Fischlerbach 29<br>55494 Rheinböllen</p>
+      <p><em>Hinweis: Die Datenschutzerklärung muss von Ihnen vervollständigt und an Ihre aktuelle Situation angepasst werden. Wir empfehlen die Erstellung durch einen Rechtsanwalt oder einen Datenschutzbeauftragten.</em></p>
+      <a href="#kontakt" class="btn-primary" style="margin-top: 3rem; display: inline-block;">Zurück zum Kontakt</a>
+    </div>
+  </section>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleFooter = document.getElementById('theme-toggle-footer');
+    function updateThemeToggle(btn, isDark) {
+      if (!btn) return;
+      const icon = isDark ? '☀️' : '🌙';
+      btn.textContent = btn === themeToggleFooter ? `${icon} ${isDark ? 'Hellmodus' : 'Dark Mode'}` : icon;
+      btn.setAttribute('aria-label', `${isDark ? 'Hellmodus' : 'Dark Mode'} aktivieren`);
+    }
+    function toggleTheme() {
+      const html = document.documentElement;
+      const nextTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('theme', nextTheme);
+      updateThemeToggle(themeToggle, nextTheme === 'dark');
+      updateThemeToggle(themeToggleFooter, nextTheme === 'dark');
+    }
+    const savedTheme = localStorage.getItem('theme');
+    const initialTheme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    updateThemeToggle(themeToggle, initialTheme === 'dark');
+    updateThemeToggle(themeToggleFooter, initialTheme === 'dark');
+    themeToggle.addEventListener('click', toggleTheme);
+    themeToggleFooter.addEventListener('click', toggleTheme);
+
+    const projectPhotos = [
+      'IMG_3891',
+      'IMG_1839', 'IMG_2398', 'IMG_2401', 'IMG_2408', 'IMG_2660', 'IMG_2977',
+      'IMG_2979', 'IMG_3130', 'IMG_3994', 'IMG_4136', 'IMG_4365',
+      'IMG_5009', 'IMG_5457', 'IMG_5462', 'IMG_5877',
+      'IMG_6158', 'IMG_6205', 'IMG_6616', 'IMG_7200', 'IMG_7882', 'IMG_8869',
+      'IMG_8999', 'IMG_9128', 'IMG_9354', 'IMG_9362', 'IMG_9458', 'IMG_9463',
+      'IMG_9635', 'IMG_9682', 'IMG_9860', 'IMG_9916'
+    ];
+    const projectGallery = document.getElementById('project-gallery');
+    const projectGalleryStatus = document.getElementById('project-gallery-status');
+    const previousProjectPage = document.getElementById('project-previous-page');
+    const nextProjectPage = document.getElementById('project-next-page');
+    const projectDialog = document.getElementById('project-dialog');
+    const projectViewerImage = document.getElementById('project-viewer-image');
+    const projectCaption = document.getElementById('project-caption');
+    const projectCount = document.getElementById('project-count');
+    const mobileProjectQuery = window.matchMedia('(max-width: 768px)');
+    let projectsPerPage = mobileProjectQuery.matches ? 2 : 3;
+    let projectPage = 0;
+    let activeProjectIndex = 0;
+
+    function renderProjectPage() {
+      const start = projectPage * projectsPerPage;
+      const pagePhotos = projectPhotos.slice(start, start + projectsPerPage);
+      projectGallery.replaceChildren();
+
+      pagePhotos.forEach((photo, pageIndex) => {
+        const index = start + pageIndex;
+        const card = document.createElement('button');
+        card.className = 'project-card';
+        card.type = 'button';
+        card.dataset.projectIndex = index;
+        card.setAttribute('aria-haspopup', 'dialog');
+        card.setAttribute('aria-label', `Projekt ${index + 1} von ${projectPhotos.length} vergrößern`);
+
+        const image = document.createElement('img');
+        image.className = 'project-card__image';
+        image.src = `img/new/optimized/${photo}.jpg`;
+        image.alt = `Einblick in ein Bodenprojekt, Foto ${index + 1}`;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+
+        const label = document.createElement('span');
+        label.className = 'project-card__label';
+        label.textContent = `PROJEKT ${String(index + 1).padStart(2, '0')}`;
+
+        card.append(image, label);
+        projectGallery.append(card);
+      });
+
+      const end = Math.min(start + pagePhotos.length, projectPhotos.length);
+      projectGalleryStatus.textContent = `${start + 1}–${end} von ${projectPhotos.length} Projekten`;
+      previousProjectPage.disabled = projectPage === 0;
+      nextProjectPage.disabled = end === projectPhotos.length;
+      previousProjectPage.setAttribute('aria-label', `Vorherige Projekte, Seite ${Math.max(1, projectPage)} von ${Math.ceil(projectPhotos.length / projectsPerPage)}`);
+      nextProjectPage.setAttribute('aria-label', `Weitere Projekte, Seite ${Math.min(projectPage + 2, Math.ceil(projectPhotos.length / projectsPerPage))} von ${Math.ceil(projectPhotos.length / projectsPerPage)}`);
+    }
+
+    renderProjectPage();
+    previousProjectPage.addEventListener('click', () => {
+      if (projectPage === 0) return;
+      projectPage -= 1;
+      renderProjectPage();
+    });
+    nextProjectPage.addEventListener('click', () => {
+      if ((projectPage + 1) * projectsPerPage >= projectPhotos.length) return;
+      projectPage += 1;
+      renderProjectPage();
+    });
+    mobileProjectQuery.addEventListener('change', (event) => {
+      projectsPerPage = event.matches ? 2 : 3;
+      projectPage = 0;
+      renderProjectPage();
+    });
+
+    function showProject(index) {
+      activeProjectIndex = (index + projectPhotos.length) % projectPhotos.length;
+      const photo = projectPhotos[activeProjectIndex];
+      projectViewerImage.src = `img/new/${photo}.jpeg`;
+      projectViewerImage.alt = `Einblick in ein Bodenprojekt, Foto ${activeProjectIndex + 1}`;
+      projectCaption.textContent = `Projektaufnahme ${String(activeProjectIndex + 1).padStart(2, '0')}`;
+      projectCount.textContent = `${activeProjectIndex + 1} / ${projectPhotos.length}`;
+    }
+
+    projectGallery.addEventListener('click', (event) => {
+      const card = event.target.closest('[data-project-index]');
+      if (!card) return;
+      showProject(Number(card.dataset.projectIndex));
+      projectDialog.showModal();
+    });
+    document.querySelector('.project-dialog__close').addEventListener('click', () => projectDialog.close());
+    document.querySelector('.project-dialog__previous').addEventListener('click', () => showProject(activeProjectIndex - 1));
+    document.querySelector('.project-dialog__next').addEventListener('click', () => showProject(activeProjectIndex + 1));
+    projectDialog.addEventListener('click', (event) => {
+      if (event.target === projectDialog) projectDialog.close();
+    });
+    projectDialog.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        showProject(activeProjectIndex - 1);
+      } else if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        showProject(activeProjectIndex + 1);
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
+        projectDialog.close();
+      }
+    });
+    projectDialog.addEventListener('close', () => projectViewerImage.removeAttribute('src'));
+
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('.btn-submit');
+        const originalText = btn.textContent;
+        btn.textContent = 'Wird gesendet...';
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.textContent = 'Nachricht gesendet!';
+          btn.style.background = '#4caf50';
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+            btn.style.background = '';
+            contactForm.reset();
+          }, 2000);
+        }, 1000);
+      });
+    }
+
+  </script>
+</body>
+</html>
