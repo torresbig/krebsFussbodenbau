@@ -26,21 +26,21 @@
       --hero-overlay: linear-gradient(180deg, rgba(10, 8, 6, 0.2) 0%, rgba(10, 8, 6, 0.5) 50%, rgba(10, 8, 6, 0.85) 100%);
     }
     :root[data-theme="light"] {
-      --bg: #f7f4ed;
+      --bg: #e9e5dc;
       --fg: #26221d;
       --accent: #79502c;
       --accent-hover: #9a6939;
       --muted: #62594f;
-      --card: rgba(255, 255, 255, 0.82);
+      --card: rgba(238, 234, 225, 0.94);
       --card-border: rgba(121, 80, 44, 0.22);
       --shadow: 0 32px 64px -12px rgba(58, 42, 25, 0.18);
       --glass: rgba(38, 34, 29, 0.04);
-      --nav-bg: rgba(247, 244, 237, 0.97);
+      --nav-bg: rgba(233, 229, 220, 0.97);
       --nav-border: rgba(121, 80, 44, 0.2);
-      --hero-overlay: linear-gradient(180deg, rgba(247, 244, 237, 0.45) 0%, rgba(247, 244, 237, 0.68) 55%, rgba(247, 244, 237, 0.94) 100%);
+      --hero-overlay: linear-gradient(180deg, rgba(233, 229, 220, 0.45) 0%, rgba(233, 229, 220, 0.68) 55%, rgba(233, 229, 220, 0.94) 100%);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--bg);
@@ -49,7 +49,7 @@
       padding: 0;
       min-height: 100vh;
       line-height: 1.7;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
     h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; line-height: 1.05; margin: 0 0 1rem; }
     h1 { font-size: clamp(3.5rem, 8vw, 7rem); letter-spacing: -0.03em; }
@@ -129,6 +129,10 @@
     .project-gallery-button:hover:not(:disabled) { border-color: var(--accent); background: rgba(139, 90, 43, 0.15); color: var(--accent-hover); }
     .project-gallery-button:disabled { cursor: not-allowed; opacity: 0.45; }
     .about-layout, .einzugsgebiet-layout, .kontakt-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 5rem; }
+    .about-stats { display: flex; flex-wrap: wrap; gap: 1.5rem 3rem; margin-top: 3rem; }
+    .leistungen-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 2.5rem; }
+    .footer-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 4rem; align-items: start; }
+    .footer-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 2.5rem; }
     .project-dialog { width: fit-content; max-width: 96vw; max-height: 94vh; padding: 0; overflow: visible; border: 1px solid rgba(255,255,255,0.2); border-radius: 16px; background: #111; color: #fff; box-shadow: 0 24px 80px rgba(0,0,0,0.5); }
     .project-dialog::backdrop { background: rgba(5, 5, 5, 0.86); backdrop-filter: blur(6px); }
     .project-viewer { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.75rem; padding: 3.5rem 1rem 1rem; }
@@ -141,6 +145,11 @@
     .project-viewer__caption { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 1rem; color: rgba(255,255,255,0.8); font-size: 0.9rem; }
     @media (max-width: 768px) {
       .about-layout, .einzugsgebiet-layout, .kontakt-layout { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+      .about-stats { gap: 1.25rem 2rem; margin-top: 2rem; }
+      .leistungen-grid { gap: 1.5rem; }
+      .footer-layout { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+      .footer-links { gap: 1.5rem; }
+      .kontakt-form { padding: 2rem 1.25rem !important; }
       .einzugsgebiet-layout { gap: 1.5rem; }
       .einzugsgebiet-content { display: contents; }
       .einzugsgebiet-content h3 { order: -1; }
@@ -225,7 +234,7 @@
           <h3>Ihr Partner für erstklassige Böden</h3>
           <p>Die Krebs Fussbodenbau GmbH ist Ihr erfahrener Meisterbetrieb in Rheinböllen. Wir verbinden traditionelles Handwerk mit modernen Techniken, um Böden zu schaffen, die nicht nur schön aussehen, sondern auch halten, was sie versprechen.</p>
           <p>Von der ersten Beratung über die Materialauswahl bis zur fachgerechten Verlegung — wir begleiten Sie bei jedem Schritt.</p>
-          <div style="display: flex; gap: 3rem; margin-top: 3rem;">
+          <div class="about-stats">
             <div style="display: flex; flex-direction: column; gap: 0.25rem;">
               <span style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--accent-hover);">25+</span>
               <span style="font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Jahre Erfahrung</span>
@@ -251,7 +260,7 @@
         <h2 class="section-title">Alles aus einer Hand.</h2>
         <p class="section-subtitle">Wir bieten Ihnen ein umfassendes Leistungsspektrum rund um Bodenbeläge, Estrich, Bautrocknung und Geräteverleih.</p>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem;">
+      <div class="leistungen-grid">
         <div class="leistung-card reveal reveal-delay-2" style="background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 3rem 2rem; transition: var(--transition); position: relative; overflow: hidden; backdrop-filter: blur(10px);">
           <span style="font-size: 3rem; margin-bottom: 2rem; display: inline-block;">🪵</span>
           <h4 style="color: var(--fg);">Bodenbeläge</h4>
@@ -397,7 +406,7 @@
 
   <footer style="background: var(--card); border-top: 1px solid var(--card-border); padding: 4rem 1.5rem 2rem; backdrop-filter: blur(10px);">
     <div class="container">
-      <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: start;">
+      <div class="footer-layout">
         <div class="footer-brand reveal reveal-delay-1">
           <div class="brand-mark" style="margin-bottom: 1.5rem;" role="img" aria-label="Krebs Fussbodenbau GmbH">
             <span class="brand-mark__text" aria-hidden="true">
@@ -411,7 +420,7 @@
             <button class="theme-toggle" id="theme-toggle-footer" aria-label="Hellmodus aktivieren">☀️ Hellmodus</button>
           </div>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem;">
+        <div class="footer-links">
           <div class="footer-section reveal reveal-delay-2">
             <h4 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--fg); margin-bottom: 1.5rem;">Leistungen</h4>
             <ul style="list-style: none; padding: 0; margin: 0;">
