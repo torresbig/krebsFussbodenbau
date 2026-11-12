@@ -8,6 +8,48 @@
   <title>Krebs Fussbodenbau | Böden mit Substanz</title>
   <link rel="icon" href="img/logo/krebs_gruen.png">
   <link rel="stylesheet" href="style.css?v=8">
+  <style>
+    /* Farbfolge nach dem Rubriken-Umzug anpassen (nur index.html, Override auf style.css):
+       Hero bleibt dunkles Cover (Anker). Danach streng abwechselnd hell/dunkel,
+       damit keine zwei benachbarten Abschnitte denselben Ton tragen –
+       mehr Abwechslung als die ursprüngliche D D D L L L L D-Folge.
+       Kontakt + Footer schließen als eine dunkle Bande ab.
+       Die Textfarben der umgeflippten Abschnitte werden jeweils mit angepasst. */
+    /* #ueber-uns → hell (helles Raumfoto, Werte-Kacheln werden nach unten abgebildet) */
+    #ueber-uns{background:var(--light);color:var(--ink)}
+    #ueber-uns .about-copy>p:not(.eyebrow){color:var(--ink)}
+    #ueber-uns .about-copy h2{color:var(--ink)}
+    #ueber-uns .about-copy h2 span{color:var(--ink)}
+    #ueber-uns .values{border-color:var(--line)}
+    #ueber-uns .values span{color:var(--accent)}
+    #ueber-uns .values h3{color:var(--ink)}
+    #ueber-uns .values p{color:var(--ink)}
+    #ueber-uns .button-outline{color:var(--ink);border-color:var(--line);background:#fff}
+    #ueber-uns .button-outline:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+    /* #referenzen → dunkel (stimmungsvolle Galerie-Wand, Karten bleiben hell) */
+    #referenzen{background:var(--dark);color:#f4f4ef}
+    #referenzen .eyebrow{color:#c9b991}
+    #referenzen .section-heading h2{color:#f4f4ef}
+    #referenzen .section-heading h2 span{color:#b4b8af}
+    #referenzen .section-heading>p{color:#b4b8af}
+    /* #kontakt → dunkel (weiße Form-Kartehebt sich, schließt als Bande mit Footer) */
+    #kontakt .eyebrow{color:#c9b991}
+    #kontakt .contact-copy h2{color:#f4f4ef}
+    #kontakt .contact-copy h2 span{color:#b4b8af}
+    #kontakt{background:var(--dark);color:#f4f4ef}
+    #kontakt .contact-copy>p:not(.eyebrow){color:#b4b8af}
+    #kontakt .contact-details span{color:#b4b8af}
+    #kontakt .contact-details a{color:#f4f4ef}
+    #kontakt .contact-details p{color:#f4f4ef}
+    #kontakt .contact-details .route-link{color:#c9b991}
+    /* Form-Karte bleibt weiß, ihre Texte müssen aber dunkel sein (erben sonst das #f4f4ef von .contact) */
+    #kontakt .form-card{color:var(--ink)}
+    /* Einzugsgebiet: kühles Sage (#e5e7df) → warme Creme, wie alle Light-Sections */
+    .service-area{background:var(--light)}
+    /* Referenzen-Galerie: der „Weitere Bilder“-Button ist auf dem dunklen Grund (#1d201d) unsichtbar */
+    #referenzen .gallery-more{background:#e6e6df;color:#292b25}
+    #referenzen .gallery-more:hover{background:var(--accent);color:#fff}
+  </style>
     <script src="site.js?v=8" defer></script>
   <noscript><style>#request-form{display:none}.gallery-item{pointer-events:none}</style></noscript>
 </head>
@@ -21,7 +63,7 @@
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" aria-label="Menü öffnen"><span></span><span></span></button>
       <nav id="navigation" class="navigation" aria-label="Hauptnavigation">
-        <a href="#leistungen">Leistungen</a><a href="#ueber-uns">Über uns</a><a href="#referenzen">Projekte</a><a href="#einzugsgebiet">Einzugsgebiet</a><a href="#ablauf">Ablauf</a><a href="#kontakt" class="nav-cta">Projekt anfragen <span aria-hidden="true">↗</span></a>
+        <a href="#ueber-uns">Über uns</a><a href="#ablauf">Schicht für Schicht</a><a href="#leistungen">Leistungen</a><a href="#referenzen">Einblicke</a><a href="#einzugsgebiet">Einzugsgebiet</a><a href="#kontakt" class="nav-cta">Projekt anfragen <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
@@ -39,25 +81,10 @@
       <div class="wrap hero-bottom"><span>MEISTERBETRIEB SEIT 1995</span><a href="#leistungen">MEHR ENTDECKEN <span aria-hidden="true">↓</span></a></div>
     </section>
 
-    <section class="intro section-light" id="leistungen">
-      <div class="wrap">
-        <div class="section-heading reveal">
-          <div><p class="eyebrow">01 / Unsere Leistungen</p><h2>Ein guter Boden.<br><span>Viele Möglichkeiten.</span></h2></div>
-          <p>Ob Neubau oder Sanierung: Wir begleiten Ihr Vorhaben vom Untergrund bis zum passenden Bodenbelag.</p>
-        </div>
-        <div class="services">
-          <article class="service-card reveal" id="bodenbelaege"><div class="service-image"><img src="img/new/optimized/IMG_2398.jpg" alt="Boden in Fischgrätoptik" loading="lazy"></div><div class="service-body"><span class="number">01 / BODENBELÄGE</span><h3>Räume, die sich<br>richtig anfühlen.</h3><p>Parkett, Laminat, Vinyl und Designböden – fachgerecht verlegt und passend zu Ihrem Raum.</p><a class="text-link" href="#kontakt">Bodenbelag anfragen <span aria-hidden="true">↗</span></a></div></article>
-          <article class="service-card reveal" id="estrich"><div class="service-image"><img src="img/new/optimized/IMG_3891.jpg" alt="Moderner Raum mit verlegtem Boden" loading="lazy"></div><div class="service-body"><span class="number">02 / ESTRICHARBEITEN</span><h3>Die Basis für<br>gute Ergebnisse.</h3><p>Präzise Estricharbeiten für Neubau und Sanierung – als Grundlage für Ihren weiteren Bodenaufbau.</p><a class="text-link" href="#kontakt">Estrich anfragen <span aria-hidden="true">↗</span></a></div></article>
-          <article class="service-small reveal"><span class="service-icon" aria-hidden="true">↗</span><div><span class="number">03 / BAUTROCKNUNG</span><h3>Wenn es trocken<br>werden muss.</h3><p>Bautrocknung bei Neubau und nach Wasserschäden.</p><a class="text-link" href="#kontakt">Mehr erfahren <span aria-hidden="true">↗</span></a></div></article>
-          <article class="service-small reveal"><span class="service-icon" aria-hidden="true">↗</span><div><span class="number">04 / GERÄTEVERLEIH</span><h3>Das passende<br>Werkzeug.</h3><p>Schleifmaschinen und Trocknungsgeräte für Ihr Projekt.</p><a class="text-link" href="#kontakt">Verleih anfragen <span aria-hidden="true">↗</span></a></div></article>
-        </div>
-      </div>
-    </section>
-
     <section class="about section-dark" id="ueber-uns">
       <div class="wrap about-grid">
         <div class="about-picture reveal"><img src="img/new/optimized/IMG_1839.jpg" alt="Heller Boden in einem Wohnraum" loading="lazy"><div class="picture-note"><span>HANDWERK, DAS BLEIBT.</span><span aria-hidden="true">↗</span></div></div>
-        <div class="about-copy reveal"><p class="eyebrow">02 / Über uns</p><h2>Meisterhandwerk<br><span>seit 1995.</span></h2><p>Die Krebs Fussbodenbau GmbH ist Ihr Meisterbetrieb in Rheinböllen. Seit 1995 verbinden wir Erfahrung im Fussbodenbau mit traditionellem Handwerk und modernen Techniken.</p><p>Jeder Raum und jedes Vorhaben ist anders. Von der persönlichen Beratung und Materialauswahl bis zur fachgerechten Verlegung stehen Ihre Wünsche und eine sorgfältige Ausführung im Mittelpunkt.</p><a class="button button-outline" href="#kontakt">Lernen wir uns kennen <span aria-hidden="true">↗</span></a></div>
+        <div class="about-copy reveal"><p class="eyebrow">01 / Über uns</p><h2>Meisterhandwerk<br><span>seit 1995.</span></h2><p>Die Krebs Fussbodenbau GmbH ist Ihr Meisterbetrieb in Rheinböllen. Seit 1995 verbinden wir Erfahrung im Fussbodenbau mit traditionellem Handwerk und modernen Techniken.</p><p>Jeder Raum und jedes Vorhaben ist anders. Von der persönlichen Beratung und Materialauswahl bis zur fachgerechten Verlegung stehen Ihre Wünsche und eine sorgfältige Ausführung im Mittelpunkt.</p><a class="button button-outline" href="#kontakt">Lernen wir uns kennen <span aria-hidden="true">↗</span></a></div>
       </div>
       <div class="wrap values" aria-label="Unsere Arbeitsweise">
         <div class="reveal"><span>01</span><h3>Persönlich beraten</h3><p>Wir hören zu und finden gemeinsam die passende Lösung.</p></div>
@@ -67,32 +94,11 @@
       </div>
     </section>
 
-    <section class="projects section-light" id="referenzen">
-      <div class="wrap">
-        <div class="section-heading reveal"><div><p class="eyebrow">03 / Einblicke</p><h2>Arbeit, die man<br><span>sehen kann.</span></h2></div><p>Einblicke in Bodenprojekte aus unserer bisherigen Galerie. Jedes Bild erzählt von einem anderen Raum und seinen Möglichkeiten.</p></div>
-        <div class="gallery">
-          <button class="gallery-item gallery-wide reveal" type="button" data-image="img/new/optimized/IMG_3891.jpg" data-alt="Heller Boden in einem modernen Wohnraum"><img src="img/new/optimized/IMG_3891.jpg" alt="Heller Boden in einem modernen Wohnraum" loading="lazy"><span>WOHNRÄUME <b aria-hidden="true">↗</b></span></button>
-          <button class="gallery-item reveal" type="button" data-image="img/new/optimized/IMG_2398.jpg" data-alt="Boden in Fischgrätoptik mit Treppe"><img src="img/new/optimized/IMG_2398.jpg" alt="Boden in Fischgrätoptik mit Treppe" loading="lazy"><span>DETAILS <b aria-hidden="true">↗</b></span></button>
-          <button class="gallery-item reveal" type="button" data-image="img/new/optimized/IMG_3994.jpg" data-alt="Bodenbelag in einem Gastraum"><img src="img/new/optimized/IMG_3994.jpg" alt="Bodenbelag in einem Gastraum" loading="lazy"><span>INDIVIDUELLE RÄUME <b aria-hidden="true">↗</b></span></button>
-          <button class="gallery-item gallery-wide reveal" type="button" data-image="img/new/optimized/IMG_1839.jpg" data-alt="Heller Boden in einem Wohnbereich"><img src="img/new/optimized/IMG_1839.jpg" alt="Heller Boden in einem Wohnbereich" loading="lazy"><span>BÖDEN ZUM LEBEN <b aria-hidden="true">↗</b></span></button>
-        </div>
-        <button class="button gallery-more" id="gallery-more" type="button" hidden>Weitere Bilder ansehen <span aria-hidden="true">↓</span></button>
-      </div>
-    </section>
-    <dialog class="lightbox" aria-label="Projektbild vergrößert"><button class="lightbox-close" type="button" aria-label="Bild schließen">×</button><img alt=""><p></p></dialog>
-
-    <section class="service-area section-light" id="einzugsgebiet">
-      <div class="wrap area-grid">
-        <div class="area-copy reveal"><p class="eyebrow">04 / Einzugsgebiet</p><h2>In der Region<br><span>zu Hause.</span></h2><p>Von Rheinböllen aus sind wir für Bodenprojekte in Rheinland-Pfalz und darüber hinaus unterwegs. Unser Einzugsgebiet reicht unter anderem in diese Regionen:</p><ul class="area-places"><li>Rheinböllen &amp; Umgebung</li><li>Koblenz</li><li>Frankfurt</li><li>Trier</li><li>Kaiserslautern</li><li>Köln</li><li>Mainz</li></ul><a class="text-link" href="#kontakt">Projekt in Ihrer Nähe anfragen <span aria-hidden="true">↗</span></a></div>
-        <div class="area-map reveal"><img src="img/gebiet/einzugsgebiet.png" alt="Karte des Einzugsgebiets rund um Rheinböllen, unter anderem bis Köln, Frankfurt, Trier und Kaiserslautern" loading="lazy"><span>UNSER EINSATZGEBIET <span aria-hidden="true">↗</span></span></div>
-      </div>
-    </section>
-
     <section class="process section-dark" id="ablauf" aria-labelledby="ablauf-title">
       <div class="process-pin" id="process-pin">
         <div class="wrap process-layout">
           <div class="process-copy">
-            <p class="eyebrow">05 / Schicht für Schicht</p>
+            <p class="eyebrow">02 / Schicht für Schicht</p>
             <h2 id="ablauf-title">So entsteht<br><span>Ihr Boden.</span></h2>
             <p class="process-lead">Vom tragfähigen Untergrund bis zum fertigen Belag: Jede Schicht wird sorgfältig aufgebaut.</p>
             <ol class="process-list">
@@ -113,6 +119,44 @@
         </div>
       </div>
     </section>
+
+    <section class="intro section-light" id="leistungen">
+      <div class="wrap">
+        <div class="section-heading reveal">
+          <div><p class="eyebrow">03 / Unsere Leistungen</p><h2>Ein guter Boden.<br><span>Viele Möglichkeiten.</span></h2></div>
+          <p>Ob Neubau oder Sanierung: Wir begleiten Ihr Vorhaben vom Untergrund bis zum passenden Bodenbelag.</p>
+        </div>
+        <div class="services">
+          <article class="service-card reveal" id="bodenbelaege"><div class="service-image"><img src="img/new/optimized/IMG_2398.jpg" alt="Boden in Fischgrätoptik" loading="lazy"></div><div class="service-body"><span class="number">01 / BODENBELÄGE</span><h3>Räume, die sich<br>richtig anführen.</h3><p>Parkett, Laminat, Vinyl und Designböden – fachgerecht verlegt und passend zu Ihrem Raum.</p><a class="text-link" href="#kontakt">Bodenbelag anfragen <span aria-hidden="true">↗</span></a></div></article>
+          <article class="service-card reveal" id="estrich"><div class="service-image"><img src="img/new/optimized/IMG_3891.jpg" alt="Moderner Raum mit verlegtem Boden" loading="lazy"></div><div class="service-body"><span class="number">02 / ESTRICHARBEITEN</span><h3>Die Basis für<br>gute Ergebnisse.</h3><p>Präzise Estricharbeiten für Neubau und Sanierung – als Grundlage für Ihren weiteren Bodenaufbau.</p><a class="text-link" href="#kontakt">Estrich anfragen <span aria-hidden="true">↗</span></a></div></article>
+          <article class="service-small reveal"><span class="service-icon" aria-hidden="true">↗</span><div><span class="number">03 / BAUTROCKNUNG</span><h3>Wenn es trocken<br>werden muss.</h3><p>Bautrocknung bei Neubau und nach Wasserschäden.</p><a class="text-link" href="#kontakt">Mehr erfahren <span aria-hidden="true">↗</span></a></div></article>
+          <article class="service-small reveal"><span class="service-icon" aria-hidden="true">↗</span><div><span class="number">04 / GERÄTEVERLEIH</span><h3>Das passende<br>Werkzeug.</h3><p>Schleifmaschinen und Trocknungsgeräte für Ihr Projekt.</p><a class="text-link" href="#kontakt">Verleih anfragen <span aria-hidden="true">↗</span></a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects section-light" id="referenzen">
+      <div class="wrap">
+        <div class="section-heading reveal"><div><p class="eyebrow">04 / Einblicke</p><h2>Arbeit, die man<br><span>sehen kann.</span></h2></div><p>Einblicke in Bodenprojekte aus unserer bisherigen Galerie. Jedes Bild erzählt von einem anderen Raum und seinen Möglichkeiten.</p></div>
+        <div class="gallery">
+          <button class="gallery-item gallery-wide reveal" type="button" data-image="img/new/optimized/IMG_3891.jpg" data-alt="Heller Boden in einem modernen Wohnraum"><img src="img/new/optimized/IMG_3891.jpg" alt="Heller Boden in einem modernen Wohnraum" loading="lazy"><span>WOHNRÄUME <b aria-hidden="true">↗</b></span></button>
+          <button class="gallery-item reveal" type="button" data-image="img/new/optimized/IMG_2398.jpg" data-alt="Boden in Fischgrätoptik mit Treppe"><img src="img/new/optimized/IMG_2398.jpg" alt="Boden in Fischgrätoptik mit Treppe" loading="lazy"><span>DETAILS <b aria-hidden="true">↗</b></span></button>
+          <button class="gallery-item reveal" type="button" data-image="img/new/optimized/IMG_3994.jpg" data-alt="Bodenbelag in einem Gastraum"><img src="img/new/optimized/IMG_3994.jpg" alt="Bodenbelag in einem Gastraum" loading="lazy"><span>INDIVIDUELLE RÄUME <b aria-hidden="true">↗</b></span></button>
+          <button class="gallery-item gallery-wide reveal" type="button" data-image="img/new/optimized/IMG_1839.jpg" data-alt="Heller Boden in einem Wohnbereich"><img src="img/new/optimized/IMG_1839.jpg" alt="Heller Boden in einem Wohnbereich" loading="lazy"><span>BÖDEN ZUM LEBEN <b aria-hidden="true">↗</b></span></button>
+        </div>
+        <button class="button gallery-more" id="gallery-more" type="button" hidden>Weitere Bilder ansehen <span aria-hidden="true">↓</span></button>
+      </div>
+    </section>
+    <dialog class="lightbox" aria-label="Projektbild vergrößert"><button class="lightbox-close" type="button" aria-label="Bild schließen">×</button><img alt=""><p></p></dialog>
+
+    <section class="service-area section-light" id="einzugsgebiet">
+      <div class="wrap area-grid">
+        <div class="area-copy reveal"><p class="eyebrow">05 / Einzugsgebiet</p><h2>In der Region<br><span>zu Hause.</span></h2><p>Von Rheinböllen aus sind wir für Bodenprojekte in Rheinland-Pfalz und darüber hinaus unterwegs. Unser Einzugsgebiet reicht unter anderem in diese Regionen:</p><ul class="area-places"><li>Rheinböllen &amp; Umgebung</li><li>Koblenz</li><li>Frankfurt</li><li>Trier</li><li>Kaiserslautern</li><li>Köln</li><li>Mainz</li></ul><a class="text-link" href="#kontakt">Projekt in Ihrer Nähe anfragen <span aria-hidden="true">↗</span></a></div>
+        <div class="area-map reveal"><img src="img/gebiet/einzugsgebiet.png" alt="Karte des Einzugsgebiets rund um Rheinböllen, unter anderem bis Köln, Frankfurt, Trier und Kaiserslautern" loading="lazy"><span>UNSER EINSATZGEBIET <span aria-hidden="true">↗</span></span></div>
+      </div>
+    </section>
+
+    
 
     <section class="contact section-light" id="kontakt">
       <div class="wrap contact-grid">
